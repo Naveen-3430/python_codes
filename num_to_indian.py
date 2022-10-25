@@ -1,19 +1,29 @@
-def num_to_indian_sys(n_s):
-    n_s = str(n_s)
-    if len(n_s.split('.')) == 1:
-        s = n_s
+def num_to_indian_sys(number_):
+    number_ = str(number_)
+    
+    #To check whether there is "." in the string to know whether the amount has paisa or not
+    if len(number_.split('.')) == 1:
+        rupees = number_
     else:
-        s,d = n_s.split('.')
-    if len(s)<3:
-        print(s)
-    if len(s)>3:
-        r = ''.join(s[-3:])
-        for x in range(-3,-len(s),-2):
+        rupees,paisa = number_.split('.')
+    
+    #To check whether the length of the money is less than 3 or not
+    if len(rupees)<3:
+        print(rupees)
+    
+    #To check whether the length of the money is greater than 3 or not
+    if len(rupees)>3:
+        money = ''.join(rupees[-3:])
+        for x in range(-3,-len(rupees),-2):
         
-            r = s[x-2:x] + ","+r
-    if len(n_s.split('.')) == 1:
-        f = r
+            money = rupees[x-2:x] + ","+money
+    
+    #If there is no paisa in the money
+    if len(number_.split('.')) == 1:
+        final_money = money
+    
+    #If the money has paisa in it
     else:
-        f = r+ '.'+d
+        final_money = money+ '.'+paisa
         
-    return f
+    return final_money
